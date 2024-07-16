@@ -1,0 +1,59 @@
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UserService } from 'src/app/_services/user.service';
+import { mobileNumberValidator, passwordValidator } from 'src/app/_validators';
+
+@Component({
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.scss']
+})
+export class SignupComponent implements OnInit {
+  signupForm!: FormGroup;
+  submitted: boolean = false;
+
+  constructor(private fb: FormBuilder, private userService: UserService){
+
+  }
+
+  ngOnInit(): void {
+    this.signupForm = this.fb.group({
+      name: ['', Validators.required],
+      mobile: ['', [Validators.required, mobileNumberValidator]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]],
+      confirmPassword: ['', [Validators.required, passwordValidator]]
+    })
+
+    this.signupForm.controls['password'].valueChanges.subscribe(x => {
+        this.signupForm.controls['confirmPassword'].updateValueAndValidity()
+      }
+    )
+
+    
+  }
+
+  get f(){
+   return this.signupForm.controls;
+  }
+
+  onSubmit(){
+    console.log(this.signupForm.value)
+    
+    this.submitted = true;
+
+    if(this.signupForm.invalid){
+      return;
+    }
+
+    let formData = this.signupForm.value;
+
+    delete formData.confirmPassword;
+
+    this.userService.postUser(formData).subscribe(res => {
+
+    })
+
+    
+  }
+}
