@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CardComponent } from './_components/card/card.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule} from '@angular/common/http';
+
 
 
 
@@ -15,13 +15,11 @@ import { HttpClientModule} from '@angular/common/http';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
   ],
   exports: [
     CardComponent,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
-  ]
+  ],
 })
 export class SharedModule { }

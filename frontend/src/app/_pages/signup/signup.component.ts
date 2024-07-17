@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Route, Router } from '@angular/router';
 import { UserService } from 'src/app/_services/user.service';
 import { mobileNumberValidator, passwordValidator } from 'src/app/_validators';
 
@@ -12,7 +13,7 @@ export class SignupComponent implements OnInit {
   signupForm!: FormGroup;
   submitted: boolean = false;
 
-  constructor(private fb: FormBuilder, private userService: UserService){
+  constructor(private fb: FormBuilder, private userService: UserService, private router: Router){
 
   }
 
@@ -50,8 +51,11 @@ export class SignupComponent implements OnInit {
 
     delete formData.confirmPassword;
 
-    this.userService.postUser(formData).subscribe(res => {
-
+    this.userService.signup(formData).subscribe(res => {
+      console.log(res);
+      if(res.msg == "user created"){
+        this.router.navigate(["/login"]);
+      }
     })
 
     

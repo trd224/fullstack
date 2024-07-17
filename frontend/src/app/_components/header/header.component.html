@@ -1,5 +1,10 @@
 <header class="header">
-    <ul>
-        <li><a routerLink="/signup">Signup</a></li>
+    <ul *ngIf="!currentUser">
+        <li class="align"><a routerLink="/signup">Signup</a></li>
+        <li><a routerLink="/login">login</a></li>
+    </ul>
+    <ul *ngIf="currentUser">
+        <li class="align">{{currentUser.email}}</li>
+        <li><a >Logout</a></li>
     </ul>
 </header>

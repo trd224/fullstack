@@ -2,7 +2,7 @@ const express = require("express");
 const connectTOMongoDB = require("./DBConnection")
 const cors = require("cors");
 const app = express();
-const PORT = 4000;
+const PORT = 4001;
 
 connectTOMongoDB("mongodb://127.0.0.1:27017/fullstackTest")
 .then(() => console.log("connected to mongodb"))
