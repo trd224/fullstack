@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/_services/user.service';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -10,8 +10,8 @@ export class HeaderComponent implements OnInit {
 
   currentUser: any;
 
-  constructor(private userService: UserService){
-    this.userService.currentUser.subscribe(user => {
+  constructor(private authService: AuthService){
+    this.authService.currentUser.subscribe(user => {
       this.currentUser = user;
       console.log(this.currentUser);
     })

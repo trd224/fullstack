@@ -4,7 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
-import { JwtInterceptor } from 'src/app/_interceptor/jwt.interceptor';
+import { JwtInterceptor } from 'src/app/_interceptors/jwt.interceptor';
+import { ErrorInterceptor } from 'src/app/_interceptors/error.interceptor';
 
 import { SharedModule } from './_modules/shared/shared.module';
 import { AppComponent } from './app.component';
@@ -21,6 +22,7 @@ import { DirectiveExampleComponent } from './_pages/directive-example/directive-
 import { DateFormatPipe } from './_pipes/date-format.pipe';
 import { CustomPipeComponent } from './_pages/custom-pipe/custom-pipe.component';
 import { LoginComponent } from './_pages/login/login.component';
+
 //import { DashboardComponent } from './_pages/dashboard/dashboard.component';
 
 @NgModule({
@@ -47,7 +49,8 @@ import { LoginComponent } from './_pages/login/login.component';
     SharedModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass:JwtInterceptor, multi:true}
+    {provide: HTTP_INTERCEPTORS, useClass:JwtInterceptor, multi:true},
+    {provide: HTTP_INTERCEPTORS, useClass:ErrorInterceptor, multi:true}
   ],
   bootstrap: [AppComponent]
 })

@@ -1,5 +1,5 @@
 const express = require("express");
-const connectTOMongoDB = require("./DBConnection")
+const connectTOMongoDB = require("./DBConnection");
 const cors = require("cors");
 const app = express();
 const PORT = 4001;

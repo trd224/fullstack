@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Route, Router } from '@angular/router';
-import { UserService } from 'src/app/_services/user.service';
+import { AuthService } from 'src/app/_services/auth.service';
 import { mobileNumberValidator, passwordValidator } from 'src/app/_validators';
 
 @Component({
@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   submitted: boolean = false;
 
-  constructor(private fb: FormBuilder, private userService: UserService, private router: Router){
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router){
 
   }
 
@@ -45,10 +45,10 @@ export class LoginComponent implements OnInit {
 
     let formData = this.loginForm.value;
 
-    this.userService.login(formData).subscribe(res => {
-      console.log(res);
+    this.authService.login(formData).subscribe(res => {
+      console.log("dddddddddddddddddddddddddddddddddddddddddd",res);
       if(res && res.token){
-        this.router.navigate(["/dashboard"]);
+        this.router.navigate(["/users"]);
       }
     })
 

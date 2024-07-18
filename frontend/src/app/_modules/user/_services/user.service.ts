@@ -10,10 +10,11 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getAllUsers(): Observable<any>{
-    return this.http.get("https://jsonplaceholder.typicode.com/users");
+    return this.http.get("http://localhost:4001/user/all");
   }
 
   getUserById(id:any): Observable<any>{
-    return this.http.get(`https://jsonplaceholder.typicode.com/users/${id}`)
+    //console.log()
+    return this.http.get(`http://localhost:4001/user/${id}`)
   }
 }
