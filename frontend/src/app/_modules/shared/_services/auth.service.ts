@@ -7,39 +7,38 @@ import { BehaviorSubject, map, Observable } from 'rxjs';
 })
 export class AuthService {
 
-  
-
-  private currentUserSubject = new BehaviorSubject<any>(null);
+  user: any = localStorage.getItem("user");
+ 
+  private currentUserSubject = new BehaviorSubject<any>(JSON.parse(this.user));
   currentUser = this.currentUserSubject.asObservable();
 
   constructor(private http: HttpClient) { 
-    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-    console.log(this.currentUser);
-
-    this.verifyToken();
+   
   }
 
-//   public get currentUserValue(): any {
-//     return this.currentUserSubject.value;
-// }
+  public get currentUserValue(): any {
+    return this.currentUserSubject.value;
+  }
+
 
   signup(user: any): Observable<any>{
-    console.log(user);
+    //console.log(user);
     let payload = user;
-    console.log(payload);
+    //console.log(payload);
     return this.http.post("http://localhost:4001/user/signup", payload);
   }
 
   login(user: any): Observable<any>{
-    console.log(user);
+    //console.log(user);
     let payload = user;
-    console.log(payload);
+    //console.log(payload);
     return this.http.post("http://localhost:4001/user/login", payload).pipe(
       map((user:any) => {
-        //console.log(user.token);
+        ////console.log(user.token);
         if(user && user?.token){
           //return user;
-          localStorage.setItem("token", user?.token);
+          //localStorage.setItem("token", user?.token);
+          localStorage.setItem("user", JSON.stringify(user));
           console.log("1111111111111111111111111111111111111");
           this.currentUserSubject.next(user);
         }
@@ -49,13 +48,17 @@ export class AuthService {
   }
 
   
-
-  verifyToken(){
-    return this.http.get("http://localhost:4001/verifyToken")
-  }
-
-
+  logout(): Observable<any> | null {
+    // remove user from local storage to log user out
+    localStorage.removeItem('user');
+    if(this.currentUserSubject){
+      this.currentUserSubject.next(null);
+    }
+    return null;
+    
+}
 
 
 }
+
 

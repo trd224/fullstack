@@ -8,7 +8,7 @@ export class ClickLoggerDirective {
   constructor() { }
 
   @HostListener("click", ["$event"]) onClick(event: Event){
-    console.log("Element clicked: ", event);
+    //console.log("Element clicked: ", event);
   }
 
 }

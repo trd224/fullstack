@@ -10,6 +10,6 @@ export class CustomPipeComponent {
   currentDate: Date = new Date();
 
   constructor(){
-    console.log(this.today);
+    //console.log(this.today);
   }
 }

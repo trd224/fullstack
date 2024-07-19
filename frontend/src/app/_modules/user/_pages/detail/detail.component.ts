@@ -17,7 +17,7 @@ export class DetailComponent implements OnInit, AfterViewInit {
     let userid = this.route.snapshot.params['id'];
 
     this.userService.getUserById(userid).subscribe(res => {
-      console.log(res);
+      //console.log(res);
       this.user = res;
     }, err => {
 

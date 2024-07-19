@@ -32,7 +32,7 @@ export class AboutComponent implements OnInit {
   }
 
   onOptionChange(event: any){
-    //console.log(event.target.value);
+    ////console.log(event.target.value);
     if(event.target.value == 'yes'){
       this.detailsBool = true;
     }
@@ -42,6 +42,6 @@ export class AboutComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.aboutForm.valid)
+    //console.log(this.aboutForm.valid)
   }
 }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Route, Router } from '@angular/router';
-import { AuthService } from 'src/app/_services/auth.service';
+import { AuthService } from 'src/app/_modules/shared/_services/auth.service';
+
 import { mobileNumberValidator, passwordValidator } from 'src/app/_validators';
 
 @Component({
@@ -35,7 +36,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.loginForm.value)
+    //console.log(this.loginForm.value)
     
     this.submitted = true;
 
@@ -46,7 +47,7 @@ export class LoginComponent implements OnInit {
     let formData = this.loginForm.value;
 
     this.authService.login(formData).subscribe(res => {
-      console.log("dddddddddddddddddddddddddddddddddddddddddd",res);
+      //console.log("dddddddddddddddddddddddddddddddddddddddddd",res);
       if(res && res.token){
         this.router.navigate(["/users"]);
       }

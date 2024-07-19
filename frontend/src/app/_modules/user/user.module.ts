@@ -20,6 +20,6 @@ import { DetailComponent } from './_pages/detail/detail.component';
 })
 export class UserModule { 
   constructor(){
-    console.log("user module loaded")
+    //console.log("user module loaded")
   }
 }
