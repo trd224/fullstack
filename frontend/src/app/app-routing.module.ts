@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Page404Component } from './_components/page404/page404.component';
+import { Page404Component } from './_pages/page404/page404.component';
 import { DashboardComponent } from './_pages/dashboard/dashboard.component';
 import { SignupComponent } from './_pages/signup/signup.component';
 import { AboutComponent } from './_pages/about/about.component';

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Route, Router } from '@angular/router';
-import { AuthService } from 'src/app/_modules/shared/_services/auth.service';
-
+import { AuthService } from 'src/app/_shared/_services/auth.service';
 import { mobileNumberValidator, passwordValidator } from 'src/app/_validators';
+import { API_ENDPOINTS } from '../../_shared/_config/const';
 
 @Component({
   selector: 'app-signup',
@@ -52,7 +52,7 @@ export class SignupComponent implements OnInit {
 
     delete formData.confirmPassword;
 
-    this.authService.signup(formData).subscribe(res => {
+    this.authService.signup(API_ENDPOINTS.user.signup, formData).subscribe(res => {
       //console.log(res);
       if(res.msg == "user created"){
         this.router.navigate(["/login"]);

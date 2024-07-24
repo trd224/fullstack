@@ -1,6 +1,9 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { UserService } from '../../_services/user.service';
 import { ActivatedRoute } from '@angular/router';
+import { API_ENDPOINTS } from 'src/app/_shared/_config/const'; 
+import { ApiService } from 'src/app/_shared/_services/api.service';
+
 
 @Component({
   selector: 'app-detail',
@@ -10,18 +13,24 @@ import { ActivatedRoute } from '@angular/router';
 export class DetailComponent implements OnInit, AfterViewInit {
 
   user: any;
-  constructor(private userService: UserService, private route: ActivatedRoute){}
+  constructor(private apiService: ApiService, private route: ActivatedRoute){}
 
   ngOnInit(): void {
+
+    
    
     let userid = this.route.snapshot.params['id'];
 
-    this.userService.getUserById(userid).subscribe(res => {
-      //console.log(res);
+    //getUserById
+    this.apiService.get(API_ENDPOINTS.user.byId(userid)).subscribe(res => {
       this.user = res;
     }, err => {
 
     })
+  }
+
+  getUserById(){
+    
   }
 
   ngAfterViewInit(): void {

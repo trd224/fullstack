@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/_modules/shared/_services/auth.service';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/_shared/_services/auth.service';
 
 
 @Component({
@@ -11,7 +12,7 @@ export class HeaderComponent implements OnInit {
 
   currentUser: any;
 
-  constructor(private authService: AuthService){
+  constructor(private authService: AuthService, private router: Router){
     this.authService.currentUser.subscribe(user => {
       this.currentUser = user;
       //console.log(this.currentUser);
@@ -23,6 +24,10 @@ export class HeaderComponent implements OnInit {
   } 
 
   logout(){
-    this.authService.logout();
+    this.authService.logout()?.subscribe(res => {
+      if(res == null){
+        this.router.navigate(["/"]);
+      }
+    });
   }
 }

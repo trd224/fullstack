@@ -7,9 +7,9 @@ async function userSignUp(req, res){
         const {mobile, email, password} = req.body;
         // const user = await User.findOne({mobile: mobile, email: email});
         const user = await User.findOne({$or: [{mobile},{email}]});
-        if(user) return res.json({msg: "user alread exist"});
+        if(user) return res.json({message: "user alread exist"});
         await User.create(req.body);
-        return res.json({msg: "user created"});
+        return res.json({message: "user created"});
     }
     catch(err){
         throw err;
@@ -21,7 +21,7 @@ async function userLogin(req, res){
         console.log(req.body);
         const {email, password} = req.body;
         const user = await User.findOne({email, password});
-        if(!user) return res.json({msg: "user not found"})
+        if(!user) return res.json({message: "user not found"})
         const token = setUser(user);
 
         return res.json({email: email, token: token});
@@ -60,7 +60,7 @@ async function getUserById(req, res){
             const user = await User.findOne({_id: id});
             return res.status(200).json(user);
         }
-        return res.status(404).json({"msg": "not found"})
+        return res.status(404).json({message: "not found"})
         
     }
     catch(err){
