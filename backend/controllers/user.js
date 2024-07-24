@@ -21,7 +21,7 @@ async function userLogin(req, res){
         //console.log(req.body);
         const {email, password} = req.body;
         const user = await User.findOne({email, password});
-        if(!user) return res.status(400).json({message: "User not found"})
+        if(!user) return res.status(404).json({message: "User not found"})
         const token = setUser(user);
 
         return res.status(200).json({email: email, token: token});
@@ -51,7 +51,7 @@ async function getUserById(req, res){
             const user = await User.findOne({_id: id});
             return res.status(200).json(user);
         }
-        return res.status(404).json({message: "Not found"})
+        return res.status(404).json({message: "Not found"});
         
     }
     catch(err){
