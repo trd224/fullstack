@@ -7,40 +7,31 @@ async function userSignUp(req, res){
         const {mobile, email, password} = req.body;
         // const user = await User.findOne({mobile: mobile, email: email});
         const user = await User.findOne({$or: [{mobile},{email}]});
-        if(user) return res.json({message: "user alread exist"});
+        if(user) return res.status(409).json({message: "User alread exist"});
         await User.create(req.body);
-        return res.json({message: "user created"});
+        return res.status(201).json({message: "User created"});
     }
     catch(err){
-        throw err;
+        return res.status(500).json({ error: err });
     }
 }
 
 async function userLogin(req, res){
     try{
-        console.log(req.body);
+        //console.log(req.body);
         const {email, password} = req.body;
         const user = await User.findOne({email, password});
-        if(!user) return res.json({message: "user not found"})
+        if(!user) return res.status(400).json({message: "User not found"})
         const token = setUser(user);
 
-        return res.json({email: email, token: token});
+        return res.status(200).json({email: email, token: token});
     }
     catch(err){
-        throw err;
+        return res.status(500).json({ error: err });
     }
 
 }
 
-
-async function verifyUserToken(req, res){
-    try{
-         return res.status(200).json(users);
-    }
-    catch(err){
-         throw err;
-    }
- }
 
 async function getAllUsers(req, res){
    try{
@@ -48,7 +39,7 @@ async function getAllUsers(req, res){
         return res.status(200).json(users);
    }
    catch(err){
-        throw err;
+        return res.status(500).json({ error: err });
    }
 }
 
@@ -60,12 +51,12 @@ async function getUserById(req, res){
             const user = await User.findOne({_id: id});
             return res.status(200).json(user);
         }
-        return res.status(404).json({message: "not found"})
+        return res.status(404).json({message: "Not found"})
         
     }
     catch(err){
-        throw err;
+        return res.status(500).json({ error: err });
     }
 }
 
-module.exports = {userSignUp, userLogin, verifyUserToken, getAllUsers, getUserById}
+module.exports = {userSignUp, userLogin, getAllUsers, getUserById}

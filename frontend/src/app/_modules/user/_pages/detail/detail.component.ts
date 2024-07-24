@@ -17,8 +17,6 @@ export class DetailComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
 
-    
-   
     let userid = this.route.snapshot.params['id'];
 
     //getUserById
