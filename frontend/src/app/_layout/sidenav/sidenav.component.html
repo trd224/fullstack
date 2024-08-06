@@ -1,10 +1,5 @@
 <div class="sideNav">
     <ul>
-        <li><a routerLink="/dashboard">Dashboard</a></li>
-        <li><a routerLink="/users">Users</a></li>
-        <li><a routerLink="/about">About</a></li>
-        <li><a routerLink="/directive">Directive</a></li>
-        <li><a routerLink="/custom-pipe">Custom Pipe</a></li>
-       <!--  <li><a>Products</a></li> -->
+        <li *ngFor="let item of navigation"><a [routerLink]="item.url">{{item.title}}</a></li>
     </ul>
 </div>

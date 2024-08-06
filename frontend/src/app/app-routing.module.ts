@@ -7,6 +7,8 @@ import { AboutComponent } from './_pages/about/about.component';
 import { DirectiveExampleComponent } from './_pages/directive-example/directive-example.component';
 import { CustomPipeComponent } from './_pages/custom-pipe/custom-pipe.component';
 import { LoginComponent } from './_pages/login/login.component';
+import { CffComponent } from './_pages/cff/cff.component';
+import { FormArrayExampleComponent } from './_pages/form-array-example/form-array-example.component';
 
 const routes: Routes = [
   {path:"", redirectTo: "dashboard", pathMatch:"full"},
@@ -18,6 +20,8 @@ const routes: Routes = [
   {path: "directive", component: DirectiveExampleComponent},
   {path: "custom-pipe", component: CustomPipeComponent},
   {path:"users", loadChildren: () => import("./_modules/user/user.module").then(m => m.UserModule)},
+  {path: "cff", component: CffComponent},
+  {path: "form-array", component: FormArrayExampleComponent},
   {path:"page-not-found", component: Page404Component},
   {path:"**", redirectTo: "page-not-found", }
 ];

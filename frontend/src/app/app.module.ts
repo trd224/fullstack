@@ -22,6 +22,9 @@ import { DirectiveExampleComponent } from './_pages/directive-example/directive-
 import { DateFormatPipe } from './_pipes/date-format.pipe';
 import { CustomPipeComponent } from './_pages/custom-pipe/custom-pipe.component';
 import { LoginComponent } from './_pages/login/login.component';
+import { CffComponent } from './_pages/cff/cff.component';
+import { InputComponent } from './_components/input/input.component';
+import { FormArrayExampleComponent } from './_pages/form-array-example/form-array-example.component';
 
 
 @NgModule({
@@ -40,6 +43,9 @@ import { LoginComponent } from './_pages/login/login.component';
     DateFormatPipe,
     CustomPipeComponent,
     LoginComponent,
+    CffComponent,
+    InputComponent,
+    FormArrayExampleComponent,
   ],
   imports: [
     BrowserModule,
