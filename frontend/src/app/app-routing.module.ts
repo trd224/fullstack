@@ -9,6 +9,7 @@ import { CustomPipeComponent } from './_pages/custom-pipe/custom-pipe.component'
 import { LoginComponent } from './_pages/login/login.component';
 import { CffComponent } from './_pages/cff/cff.component';
 import { FormArrayExampleComponent } from './_pages/form-array-example/form-array-example.component';
+import { WorkSpaceComponent } from './_pages/work-space/work-space.component';
 
 const routes: Routes = [
   {path:"", redirectTo: "dashboard", pathMatch:"full"},
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path:"users", loadChildren: () => import("./_modules/user/user.module").then(m => m.UserModule)},
   {path: "cff", component: CffComponent},
   {path: "form-array", component: FormArrayExampleComponent},
+  {path: "work-space", component: WorkSpaceComponent},
   {path:"page-not-found", component: Page404Component},
   {path:"**", redirectTo: "page-not-found", }
 ];

@@ -25,6 +25,9 @@ import { LoginComponent } from './_pages/login/login.component';
 import { CffComponent } from './_pages/cff/cff.component';
 import { InputComponent } from './_components/input/input.component';
 import { FormArrayExampleComponent } from './_pages/form-array-example/form-array-example.component';
+import { WorkSpaceComponent } from './_pages/work-space/work-space.component';
+import { FormArrayExample1Component } from './_components/form-array-example1/form-array-example1.component';
+import { FormArrayExample2Component } from './_components/form-array-example2/form-array-example2.component';
 
 
 @NgModule({
@@ -46,6 +49,9 @@ import { FormArrayExampleComponent } from './_pages/form-array-example/form-arra
     CffComponent,
     InputComponent,
     FormArrayExampleComponent,
+    WorkSpaceComponent,
+    FormArrayExample1Component,
+    FormArrayExample2Component,
   ],
   imports: [
     BrowserModule,

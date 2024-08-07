@@ -5,6 +5,11 @@ export const SIDEBAR_NAVIGATION: any[] = [
         url: "/dashboard",
     },
     {
+        id: 8,
+        title: "work space",
+        url: "/work-space",
+    },
+    {
         id: 2,
         title: "Users",
         url: "/users",
