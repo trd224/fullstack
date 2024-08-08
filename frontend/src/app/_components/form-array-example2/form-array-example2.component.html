@@ -1,7 +1,7 @@
 <form [formGroup]="demoForm"  (ngSubmit)="onSubmit()">
     dfd
     <div formArrayName="items">
-        <div *ngFor="let item of items.controls; let i = index" [formGroupName] = i>
+        <div *ngFor="let item of f.controls; let i = index" [formGroupName] = "i">
             <div class="field">
                 <label>label {{i + 1}}</label>
                 <input type="text" formControlName = "name">

@@ -22,16 +22,16 @@ export class FormArrayExample2Component {
     })
   }
 
-  get items() {
+  get f() {
     return this.demoForm.get('items') as FormArray;
   }
 
   addItem() {
-    this.items.push(this.fb.group({ name: ['', Validators.required] }));
+    this.f.push(this.fb.group({ name: ['', Validators.required] }));
   }
 
   removeItem(index: number) {
-    this.items.removeAt(index);
+    this.f.removeAt(index);
   }
 
   onSubmit() {
