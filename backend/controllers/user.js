@@ -1,14 +1,16 @@
-const User = require("../models/user");
+// const User = require("../models/user");
 const {setUser} = require("../services/auth");
+const { query_findExistingUser, query_createUser, query_loginUser, query_getAllUsers, query_getUserById } = require('../queries/userQueries');
 
 async function userSignUp(req, res){
     try{
-        //console.log(req.body);
-        const {mobile, email, password} = req.body;
-        // const user = await User.findOne({mobile: mobile, email: email});
-        const user = await User.findOne({$or: [{mobile},{email}]});
+
+        const user = await query_findExistingUser(req.body);
+
         if(user) return res.status(409).json({message: "User alread exist"});
-        await User.create(req.body);
+
+        await query_createUser(req.body)
+        
         return res.status(201).json({message: "User created"});
     }
     catch(err){
@@ -18,10 +20,12 @@ async function userSignUp(req, res){
 
 async function userLogin(req, res){
     try{
-        //console.log(req.body);
         const {email, password} = req.body;
-        const user = await User.findOne({email, password});
+       
+        const user = await query_loginUser(req.body);
+
         if(!user) return res.status(404).json({message: "User not found"})
+
         const token = setUser(user);
 
         return res.status(200).json({email: email, token: token});
@@ -35,7 +39,8 @@ async function userLogin(req, res){
 
 async function getAllUsers(req, res){
    try{
-        const users = await User.find({_id: req.currentUserId});
+        const users = await query_getAllUsers(req);
+
         return res.status(200).json(users);
    }
    catch(err){
@@ -48,7 +53,7 @@ async function getUserById(req, res){
    
     try{
         if(id === req.currentUserId){
-            const user = await User.findOne({_id: id});
+            const user = await query_getUserById(id)
             return res.status(200).json(user);
         }
         return res.status(404).json({message: "Not found"});
