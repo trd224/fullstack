@@ -4,6 +4,7 @@ import { SharedModule } from 'src/app/_shared/shared.module';
 import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './_pages/user/user.component';
 import { DetailComponent } from './_pages/detail/detail.component';
+import { ChatComponent } from './_pages/chat/chat.component';
 
 
 
@@ -11,7 +12,8 @@ import { DetailComponent } from './_pages/detail/detail.component';
   declarations: [
   
     UserComponent,
-      DetailComponent
+      DetailComponent,
+      ChatComponent
   ],
   imports: [
     CommonModule,

@@ -30,6 +30,7 @@ import { FormArrayExample1Component } from './_components/form-array-example1/fo
 import { FormArrayExample2Component } from './_components/form-array-example2/form-array-example2.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

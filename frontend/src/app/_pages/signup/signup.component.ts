@@ -54,7 +54,7 @@ export class SignupComponent implements OnInit {
 
     this.authService.signup(API_ENDPOINTS.user.signup, formData).subscribe(res => {
       //console.log(res);
-      if(res.msg == "user created"){
+      if(res.message == "User created"){
         this.router.navigate(["/login"]);
       }
     })

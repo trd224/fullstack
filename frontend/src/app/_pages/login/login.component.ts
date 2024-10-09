@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(API_ENDPOINTS.user.login, formData).subscribe(res => {
       //console.log("dddddddddddddddddddddddddddddddddddddddddd",res);
       if(res && res.token){
-        this.router.navigate(["/users"]);
+        this.router.navigate(["/users/list"]);
       }
     })
 

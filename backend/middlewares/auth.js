@@ -1,7 +1,7 @@
 const { getUser } = require("../services/auth");
 
 function authenticate(req, res, next){
-    req.user = null;
+    req.currentUserId = null;
     const authorizationHeaderValue = req.headers['authorization'];
     //console.log(authorizationHeaderValue);
     //console.log(authorizationHeaderValue.startsWith("Bearer"));
@@ -20,8 +20,7 @@ function authenticate(req, res, next){
 
     //req.user = user;
     req.currentUserId = user._id;
-    console.log(req.currentUserId)
-    //console.log(req.user);
+    //console.log(req.currentUserId)
 
     next();
 }

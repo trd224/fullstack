@@ -1,0 +1,17 @@
+<div>
+    <h2>Chat with {{ receiver }}</h2>
+    
+    <div>
+      <input [(ngModel)]="receiver" placeholder="Receiver's Username" />
+      <button (click)="fetchHistory()">Load History</button>
+    </div>
+  
+    <ul>
+      <li *ngFor="let msg of messages">
+        <strong>{{ msg.sender }}:</strong> {{ msg.message }}
+      </li>
+    </ul>
+  
+    <input [(ngModel)]="message" placeholder="Type a message..." />
+    <button (click)="sendMessage()">Send</button>
+  </div>

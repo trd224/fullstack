@@ -12,7 +12,12 @@ export const SIDEBAR_NAVIGATION: any[] = [
     {
         id: 2,
         title: "Users",
-        url: "/users",
+        url: "/users/list",
+    },
+    {
+        id: 2,
+        title: "chat",
+        url: "/users/chat",
     },
     {
         id: 3,

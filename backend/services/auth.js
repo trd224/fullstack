@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const SECRET = "kfkjdfdsfkkfgkdfjkgdfmgdfkgkdfgf";
+const SECRET = "kfkjdfdsfkkfgkdf4+489718718788ghgh78ghjkgdfmgdfkgkdfgf";
 
 function setUser(user){
     try{

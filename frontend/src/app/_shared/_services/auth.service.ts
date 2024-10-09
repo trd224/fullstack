@@ -32,7 +32,7 @@ export class AuthService {
       map((user:any) => {
         if(user && user?.token){
           localStorage.setItem("user", JSON.stringify(user));
-          console.log("1111111111111111111111111111111111111");
+          //console.log("1111111111111111111111111111111111111");
           this.currentUserSubject.next(user);
         }
         return user;

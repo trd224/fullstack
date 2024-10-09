@@ -1,13 +1,19 @@
 const express = require("express");
-const routers = express.Router();
-const { userSignUp, userLogin, getAllUsers, getUserById } = require("../controllers/user");
+const router = express.Router();
+const { userSignUp, userLogin, getAllUsers, getUserById, chat } = require("../controllers/user");
 const { authenticate } = require("../middlewares/auth");
 
-routers.post("/signup", userSignUp)
-routers.post("/login", userLogin)
+router.post("/signup", userSignUp)
+router.post("/login", userLogin)
 
 
-routers.get("/all", authenticate, getAllUsers)
-routers.get("/:id", authenticate, getUserById)
+router.get("/all", authenticate, getAllUsers)
+router.get("/:id", authenticate, getUserById)
 
-module.exports = routers;
+
+// Fetch chat history between users (protected route)
+router.get('/api/history/:sender/:receiver', authenticate, chat);
+
+
+
+module.exports = router;

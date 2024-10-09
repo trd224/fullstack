@@ -19,12 +19,13 @@ export class DetailComponent implements OnInit, AfterViewInit {
 
     let userid = this.route.snapshot.params['id'];
 
+   
     //getUserById
-    this.apiService.get(API_ENDPOINTS.user.byId(userid)).subscribe(res => {
+    this.apiService.get(API_ENDPOINTS.user.byId(userid)).subscribe({next: (res) => {
       this.user = res;
-    }, err => {
+    },error: (err) => {
 
-    })
+    }})
   }
 
   getUserById(){
