@@ -1,5 +1,5 @@
 const User = require("../models/user");
-const Message = require("../models/message");
+
 const {setUser} = require("../services/auth");
 // const { query_findExistingUser, 
 //         query_createUser, 
@@ -75,6 +75,17 @@ async function userLogin(req, res){
 async function getAllUsers(req, res){
     try{
 
+         const users = await User.find({});
+         return res.status(200).json(users);
+    }
+    catch(err){
+         return res.status(500).json({ error: err });
+    }
+ }
+
+ async function getCurrentUsers(req, res){
+    try{
+
          const users = await User.find({_id: req.currentUserId});
          return res.status(200).json(users);
     }
@@ -116,15 +127,5 @@ async function getUserById(req, res){
 }
 
 
-async function chat(req, res){
-    const { sender, receiver } = req.params;
-    const messages = await Message.find({
-      $or: [
-        { sender, receiver },
-        { sender: receiver, receiver: sender }
-      ]
-    }).sort('timestamp');
-    res.json(messages);
-}
 
-module.exports = {userSignUp, userLogin, getAllUsers, getUserById, chat}
+module.exports = {userSignUp, userLogin, getAllUsers, getCurrentUsers, getUserById}

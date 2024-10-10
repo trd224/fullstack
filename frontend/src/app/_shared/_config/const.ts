@@ -20,6 +20,7 @@ export const API_ENDPOINTS = {
         signup: `user/signup`,
         login: `user/login`,
         all: `user/all`,
+        current: `user/current`,
         byId: (id: string | number) => `user/${id}`
     },
     product: {

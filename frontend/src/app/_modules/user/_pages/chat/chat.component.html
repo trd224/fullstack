@@ -1,17 +1,30 @@
 <div>
-    <h2>Chat with {{ receiver }}</h2>
-    
-    <div>
-      <input [(ngModel)]="receiver" placeholder="Receiver's Username" />
-      <button (click)="fetchHistory()">Load History</button>
-    </div>
-  
-    <ul>
-      <li *ngFor="let msg of messages">
-        <strong>{{ msg.sender }}:</strong> {{ msg.message }}
-      </li>
+    <div class="sideNav">
+      <ul>
+        <ng-container *ngFor="let user of users">
+          <li *ngIf="user.email != currentUser.email">
+              <a (click)="fetchHistory(user)">{{user.name}}</a>
+          </li>
+        </ng-container>
+        
     </ul>
-  
-    <input [(ngModel)]="message" placeholder="Type a message..." />
-    <button (click)="sendMessage()">Send</button>
+    </div>
+    <div class="chatSection">
+        <h2>Chat with {{ receiver }}</h2>
+      
+      <!-- <div>
+        <input [(ngModel)]="receiver" placeholder="Receiver's Username" />
+        <button (click)="fetchHistory()">Load History</button>
+      </div> -->
+    
+      <ul>
+        <li *ngFor="let msg of messages">
+          <strong>{{ msg.sender }}:</strong> {{ msg.message }}
+        </li>
+      </ul>
+    
+      <input [(ngModel)]="message" placeholder="Type a message..." />
+      <button (click)="sendMessage()">Send</button>
+    </div>
+    
   </div>

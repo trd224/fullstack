@@ -20,7 +20,7 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     //getAllUsers
-    this.apiService.get(API_ENDPOINTS.user.all).subscribe(res => {
+    this.apiService.get(API_ENDPOINTS.user.current).subscribe(res => {
       this.users = res;
     }, err => {
 

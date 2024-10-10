@@ -10,25 +10,14 @@ import { environment } from 'src/environments/environment';
 })
 export class ChatService {
   private socket: Socket;
-  //private SERVER_URL = 'http://localhost:3000'; // Backend URL
-  //return this.http.post<any>(environment.baseUrl + api_endpoint, payload);
 
   constructor(private http: HttpClient) {
-    // this.socket = io(this.SERVER_URL);
     this.socket = io(environment.baseUrl);
+    console.log(this.socket);
   }
 
-
-
-  // Fetch chat history
-  // getHistory(sender: string, receiver: string): Observable<any> {
-  //   const token = this.localStorage.retrieve('token');
-  //   const headers = new HttpHeaders().set('Authorization', token);
-  //   return this.http.get(`${this.SERVER_URL}/api/history/${sender}/${receiver}`, { headers });
-  // }
-
   getHistory(sender: string, receiver: string): Observable<any>{
-    return this.http.get(`${environment.baseUrl}user/api/history/${sender}/${receiver}`);
+    return this.http.get(`${environment.baseUrl}chat/history/${sender}/${receiver}`);
   }
 
   // Emit a private message to the server
