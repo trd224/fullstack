@@ -3,7 +3,7 @@
       <ul>
         <ng-container *ngFor="let user of users">
           <li *ngIf="user.email != currentUser.email">
-              <a (click)="fetchHistory(user)">{{user.name}}</a>
+              <a (click)="goToChat(user)">{{user.name}}</a>
           </li>
         </ng-container>
         
@@ -18,9 +18,11 @@
       </div> -->
     
       <ul>
-        <li *ngFor="let msg of messages">
-          <strong>{{ msg.sender }}:</strong> {{ msg.message }}
-        </li>
+        <ng-container *ngFor="let msg of messages">
+          <li [ngClass]="{ 'receiver': currentUser?.email !== msg.sender}">
+            <strong>{{ msg.sender }}:</strong> {{ msg.message }}
+          </li>
+        </ng-container>
       </ul>
     
       <input [(ngModel)]="message" placeholder="Type a message..." />

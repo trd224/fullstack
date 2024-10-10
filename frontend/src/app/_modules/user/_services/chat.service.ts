@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +11,12 @@ export class ChatService {
   private socket: Socket;
 
   constructor(private http: HttpClient) {
-    this.socket = io(environment.baseUrl);
-    console.log(this.socket);
+    this.socket = io(environment.baseUrl, {
+      transports: ['websocket'], // Ensure websocket transport is used
+    });
   }
 
-  getHistory(sender: string, receiver: string): Observable<any>{
+  getHistory(sender: string, receiver: string): Observable<any> {
     return this.http.get(`${environment.baseUrl}chat/history/${sender}/${receiver}`);
   }
 
@@ -28,10 +28,9 @@ export class ChatService {
   // Listen for chat messages
   receiveMessages(): Observable<any> {
     return new Observable((observer) => {
-      this.socket.on('chat message', (msg) => {
+      this.socket.on('private message', (msg) => { // Listen for the correct event
         observer.next(msg);
       });
     });
   }
 }
-
