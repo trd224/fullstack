@@ -16,6 +16,11 @@ export class ChatService {
     });
   }
 
+  // Register the current user's email with the backend
+  registerUser(email: string) {
+    this.socket.emit('register', email);
+  }
+
   getHistory(sender: string, receiver: string): Observable<any> {
     return this.http.get(`${environment.baseUrl}chat/history/${sender}/${receiver}`);
   }

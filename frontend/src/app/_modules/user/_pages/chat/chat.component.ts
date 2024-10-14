@@ -36,6 +36,9 @@ export class ChatComponent implements OnInit {
       this.users = res;
     });
 
+    // Register the current user after socket connection
+    this.chatService.registerUser(this.sender);
+
     // Listen for new messages
     this.chatService.receiveMessages().subscribe((msg: any) => {
       console.log('Received message:', msg);
